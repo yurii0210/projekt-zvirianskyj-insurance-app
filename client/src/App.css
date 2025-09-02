@@ -1,0 +1,565 @@
+/* ===== GLOBÁLNÍ PROMĚNNÉ A NASTAVENÍ ===== */
+:root {
+  /* Fonty */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Barevná paleta (světlý motiv) */
+  --color-bg: #c5d6e6;
+  --color-bg-secondary: #e9eef5;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-success: #10b981;
+  --color-success-hover: #059669;
+  --color-warning: #f59e0b;
+  --color-warning-hover: #d97706;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-card: #ffffff;
+  --color-input-bg: #ffffff;
+  --color-border: #e2e8f0;
+
+  /* Rozměry a efekty */
+  --border-radius: 8px;
+  --border-radius-sm: 6px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --transition: all 0.2s ease-in-out;
+
+  /* Rozměry kontejnerů */
+  --container-width: 1200px;
+  --container-padding: 2rem;
+}
+
+/* ===== TMAVÝ MOTIV ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-primary: #6366f1;
+    --color-primary-hover: #818cf8;
+    --color-success: #22c55e;
+    --color-success-hover: #16a34a;
+    --color-warning: #fbbf24;
+    --color-warning-hover: #f59e0b;
+    --color-danger: #f87171;
+    --color-danger-hover: #ef4444;
+    --color-card: #1e293b;
+    --color-input-bg: #334155;
+    --color-border: #475569;
+  }
+}
+
+/* ===== ZÁKLADNÍ STYLY ===== */
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-family: inherit;
+}
+
+/* = HLAVNÍ KONTEJNER APLIKACE = */
+.app-container { 
+  display: flex; 
+  flex-direction: column; 
+  min-height: 100vh; 
+}
+
+.content-wrapper { 
+  flex: 1; 
+  padding: var(--container-padding); 
+}
+
+/* = KONTEJNER OBSAHU = */
+.container {
+  width: 90%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding) 0;
+}
+
+/* = NADPISY = */
+h1, h2, h3, h4, h5, h6 { 
+  font-weight: 600; 
+  color: var(--color-text); 
+  margin-top: 0; 
+  margin-bottom: 0.5em; 
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+/* = ODKAZY = */
+a { 
+  font-weight: 500; 
+  color: var(--color-primary); 
+  text-decoration: none; 
+  transition: var(--transition); 
+}
+
+a:hover { 
+  color: var(--color-primary-hover); 
+  text-decoration: underline; 
+}
+
+/* = TLAČÍTKA = */
+button, .btn {
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+button:hover, .btn:hover { 
+  background-color: var(--color-primary-hover); 
+  transform: translateY(-1px); 
+  box-shadow: var(--shadow-md); 
+}
+
+.btn-outline { 
+  background-color: transparent; 
+  border-color: var(--color-primary); 
+  color: var(--color-primary); 
+}
+
+.btn-outline:hover { 
+  background-color: var(--color-primary); 
+  color: white; 
+}
+
+.btn-success { 
+  background-color: var(--color-success); 
+  border-color: var(--color-success); 
+}
+
+.btn-success:hover { 
+  background-color: var(--color-success-hover); 
+  border-color: var(--color-success-hover); 
+}
+
+.btn-warning { 
+  background-color: var(--color-warning); 
+  border-color: var(--color-warning); 
+  color: #1f2937; 
+}
+
+.btn-warning:hover { 
+  background-color: var(--color-warning-hover); 
+  border-color: var(--color-warning-hover); 
+}
+
+.btn-danger { 
+  background-color: var(--color-danger); 
+  border-color: var(--color-danger); 
+}
+
+.btn-danger:hover { 
+  background-color: var(--color-danger-hover); 
+  border-color: var(--color-danger-hover); 
+}
+
+.btn-sm { 
+  padding: 0.4em 0.8em; 
+  font-size: 0.875em; 
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* = FORMULÁŘOVÉ PRVKY = */
+input, select, textarea {
+  width: 100; 
+  padding: 0.75rem; 
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-border); 
+  background-color: var(--color-input-bg); 
+  color: var(--color-text);
+  transition: var(--transition); 
+  font-family: inherit; 
+  font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus { 
+  outline: none; 
+  border-color: var(--color-primary); 
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); 
+}
+
+label { 
+  display: block; 
+  margin-bottom: 0.5rem; 
+  font-weight: 500; 
+  color: var(--color-text); 
+}
+
+.form-group { 
+  margin-bottom: 1.5rem; 
+}
+
+/* = TABULKY = */
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-bottom: 1.5rem; 
+  background-color: var(--color-card); 
+  border-radius: var(--border-radius); 
+  overflow: hidden; 
+  box-shadow: var(--shadow); 
+}
+
+th, td { 
+  padding: 1rem; 
+  text-align: left; 
+  border-bottom: 1px solid var(--color-border); 
+}
+
+thead { 
+  background-color: var(--color-primary); 
+  color: white; 
+}
+
+thead th { 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  font-size: 0.875rem; 
+  letter-spacing: 0.05em; 
+}
+
+tbody tr { 
+  transition: var(--transition); 
+}
+
+tbody tr:hover { 
+  background-color: rgba(79, 70, 229, 0.05); 
+}
+
+tbody tr:last-child td { 
+  border-bottom: none; 
+}
+
+/* = KARTY = */
+.card { 
+  background-color: var(--color-card); 
+  border-radius: var(--border-radius); 
+  padding: 1.5rem; 
+  box-shadow: var(--shadow); 
+  transition: var(--transition); 
+  margin-bottom: 1.5rem; 
+}
+
+.card:hover { 
+  box-shadow: var(--shadow-md); 
+  transform: translateY(-2px); 
+}
+
+.card-header { 
+  padding-bottom: 1rem; 
+  margin-bottom: 1rem; 
+  border-bottom: 1px solid var(--color-border); 
+}
+
+.card-title { 
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  margin: 0; 
+  color: var(--color-text); 
+}
+
+/* = FLASH ZPRÁVY = */
+.flash-message { 
+  padding: 1rem 1.5rem; 
+  border-radius: var(--border-radius-sm); 
+  margin-bottom: 1.5rem; 
+  border-left: 4px solid transparent; 
+}
+
+.flash-message.success { 
+  background-color: rgba(16, 185, 129, 0.1); 
+  border-left-color: var(--color-success); 
+  color: var(--color-success); 
+}
+
+.flash-message.danger { 
+  background-color: rgba(239, 68, 68, 0.1); 
+  border-left-color: var(--color-danger); 
+  color: var(--color-danger); 
+}
+
+.flash-message.warning { 
+  background-color: rgba(245, 158, 11, 0.1); 
+  border-left-color: var(--color-warning); 
+  color: var(--color-warning); 
+}
+
+/* = PAGINACE = */
+.pagination { 
+  display: flex; 
+  list-style: none; 
+  padding: 0; 
+  margin: 2rem 0; 
+  justify-content: center; 
+  gap: 0.5rem; 
+}
+
+.page-item { 
+  display: inline-block; 
+}
+
+.page-link { 
+  padding: 0.5rem 0.75rem; 
+  border-radius: var(--border-radius-sm); 
+  border: 1px solid var(--color-border); 
+  background-color: var(--color-card); 
+  color: var(--color-text); 
+  cursor: pointer; 
+  transition: var(--transition); 
+  text-decoration: none; 
+  display: block; 
+}
+
+.page-link:hover { 
+  background-color: var(--color-primary); 
+  color: white; 
+  border-color: var(--color-primary); 
+}
+
+.page-item.active .page-link { 
+  background-color: var(--color-primary); 
+  border-color: var(--color-primary); 
+  color: white; 
+}
+
+.page-item.disabled .page-link { 
+  opacity: 0.5; 
+  cursor: not-allowed; 
+  pointer-events: none; 
+}
+
+/* = POMOCNÉ TŘÍDY = */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.d-flex { display: flex; }
+.justify-content-between { justify-content: space-between; }
+.justify-content-center { justify-content: center; }
+.align-items-center { align-items: center; }
+.flex-column { flex-direction: column; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+
+/* = FOOTER = */
+.footer {
+  background-color: var(--color-card);
+  color: var(--color-text);
+  padding: 2rem var(--container-padding);
+  border-top: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.footer a { 
+  color: var(--color-primary); 
+  text-decoration: none; 
+  transition: var(--transition); 
+}
+
+.footer a:hover { 
+  color: var(--color-primary-hover); 
+  text-decoration: underline; 
+}
+
+.footer .footer-container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  gap: 1.5rem; 
+  max-width: var(--container-width); 
+  margin: 0 auto; 
+}
+
+.footer .footer-section { 
+  flex: 1 1 200px; 
+}
+
+.footer .footer-section h4 { 
+  font-weight: 600; 
+  margin-bottom: 1rem; 
+  color: var(--color-text); 
+}
+
+.footer .footer-section ul { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+.footer .footer-section li { 
+  margin-bottom: 0.5rem; 
+}
+
+.footer .footer-bottom { 
+  text-align: center; 
+  margin-top: 2rem; 
+  color: var(--color-text-muted); 
+  font-size: 0.875rem; 
+}
+
+/* = STRÁNKY AUTENTIZACE = */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: var(--color-bg);
+  padding: var(--container-padding);
+}
+
+.auth-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+  font-size: 1.8rem;
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--color-text-muted);
+}
+
+.auth-toggle button {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+  margin-left: 0.5rem;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.auth-toggle button:hover {
+  color: var(--color-primary-hover);
+}
+
+/* = RESPONZIVNÍ DESIGN = */
+@media (max-width: 768px) {
+  :root { 
+    --container-padding: 1rem; 
+  }
+  
+  .container { 
+    width: 95%; 
+    padding: 1rem 0; 
+  }
+  
+  .pagination { 
+    flex-wrap: wrap; 
+    gap: 0.25rem; 
+  }
+  
+  .page-link { 
+    padding: 0.4rem 0.6rem; 
+    font-size: 0.875rem; 
+  }
+  
+  table { 
+    font-size: 0.875rem; 
+  }
+  
+  th, td { 
+    padding: 0.75rem 0.5rem; 
+  }
+  
+  .card { 
+    padding: 1rem; 
+  }
+  
+  .footer .footer-container { 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 1rem; 
+  }
+  
+  .footer .footer-section { 
+    text-align: center; 
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+/* = PREFERENCE REDUKCE POHYBU = */
+@media (prefers-reduced-motion: reduce) {
+  * { 
+    animation-duration: 0.01ms !important; 
+    animation-iteration-count: 1 !important; 
+    transition-duration: 0.01ms !important; 
+  }
+  
+  button:hover, 
+  .btn:hover { 
+    transform: none; 
+  }
+  
+  .card:hover { 
+    transform: none; 
+  }
+}
