@@ -36,7 +36,7 @@ Webová aplikace pro správu pojištěnců, pojištění a typů pojištění. U
 
 ### Předpoklady
 - Node.js (verze 16 nebo vyšší)
-- npm nebo yarn
+- npm 
 
 ### Instalační kroky
 
@@ -58,7 +58,7 @@ Spusťte aplikaci
 
 # Terminal 1 - Server (port 3001)
 cd server
-npm run dev
+node server.js
 
 # Terminal 2 - Klient (port 5173)
 cd client
@@ -71,18 +71,6 @@ API: http://localhost:3001
 
 🗄️ Databáze
 Aplikace používá SQLite databázi
-
-
-
-🚀 Build pro produkci
-# Build klienta
-cd client
-npm run dev
-
-# Spuštění serveru v produkčním režimu
-cd server
-node server.js
-
 
 heslo pro administratora:
 e-mail: admin@bohemia.cz
