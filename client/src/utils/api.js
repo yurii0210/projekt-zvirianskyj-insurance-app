@@ -13,24 +13,23 @@ async function request(endpoint, options = {}) {
     // Přidá / na začátek endpointu, pokud chybí
     const url = endpoint.startsWith("/") ? `${API_URL}${endpoint}` : `${API_URL}/${endpoint}`;
 
-    console.log(`🔹 API Request: ${options.method || "GET"} ${url}`); // Logování požadavku
+    console.log(`🔹 API Request: ${options.method || "GET"} ${url}`);
 
     const response = await fetch(url, options);
     const contentType = response.headers.get("content-type");
 
-    // Zpracování JSON odpovědi
-    const data = contentType && contentType.includes("application/json")
-      ? await response.json()
-      : null;
+    const data =
+      contentType && contentType.includes("application/json")
+        ? await response.json()
+        : null;
 
-    // Pokud odpověď není OK, vyhodí chybu
     if (!response.ok) {
       const errorMessage = data?.message || `Chyba na ${endpoint}: ${response.statusText}`;
       console.error(`❌ API Chyba: ${errorMessage}`);
       throw new Error(errorMessage);
     }
 
-    console.log(`✅ API Response: ${url}`, data); // Logování úspěšné odpovědi
+    console.log(`✅ API Response: ${url}`, data);
     return data;
   } catch (error) {
     console.error(`❌ Chyba při požadavku na ${endpoint}:`, error.message);
@@ -58,8 +57,8 @@ export const apiPut = (endpoint, body) =>
   });
 
 // DELETE - smazání záznamu
-export const apiDelete = (endpoint, id) =>
-  request(`${endpoint}/${id}`, {
+export const apiDelete = (endpoint) =>
+  request(endpoint, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });
