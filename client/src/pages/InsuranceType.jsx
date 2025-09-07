@@ -99,17 +99,17 @@ export default function Aplikace() {
         setMazani(true);
     };
 
-    const potvrditSmazani = async () => {
-        setMazani(false);
-        setFlashZprava(null);
-        try {
-            await apiDelete("insuranceTypes", mazanyId);
-            setFlashZprava({ zprava: "Typ pojištění byl úspěšně smazán.", typ: "success" });
-            nactiTypyPojisteni();
-        } catch (err) {
-            setFlashZprava({ zprava: err.message || "Došlo k chybě při mazání.", typ: "danger" });
-        }
-    };
+   const potvrditSmazani = async () => {
+    setMazani(false);
+    setFlashZprava(null);
+    try {
+        await apiDelete(`/insuranceTypes/${mazanyId}`);
+        setFlashZprava({ zprava: "Typ pojištění byl úspěšně smazán.", typ: "success" });
+        nactiTypyPojisteni();
+    } catch (err) {
+        setFlashZprava({ zprava: err.message || "Došlo k chybě při mazání.", typ: "danger" });
+    }
+};
 
     // ======================== RENDER ========================
     return (
